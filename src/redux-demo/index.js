@@ -1,4 +1,4 @@
-const {redux, createStore, combineReducers} = require('redux');
+const {redux, applyMiddleware, createStore, combineReducers} = require('redux');
 
 const initialStateBooks={
     numberOfBooks:10
@@ -53,7 +53,18 @@ const reducer=combineReducers({
     Pen:pensReducer
 });
 
-const store=createStore(reducer);
+const logger=store=>{
+    return next=>{
+        return action=>{
+            const result=next(action);
+            console.log("middleware log",result);
+            return result; 
+        }
+    }
+}
+
+const store=createStore(reducer,applyMiddleware(logger));
+
 console.log("Initial State",store.getState());
 const unsubscribe=store.subscribe(()=>{console.log('Updated State Value', store.getState())});
 store.dispatch(buyBook());
