@@ -16,7 +16,7 @@ function buyBook(){
 function buyPen(){
     return {
         type:"Buy_Pen",
-        payload:"My Second Redux Code"
+        payload:"My Sec. Redux Code"
     }
 }
 
