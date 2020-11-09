@@ -1,16 +1,22 @@
-const redux=require('redux');
+const redux = require('redux');
 const createStore=redux.createStore;
 
-const Buy_Book="Buy_Book";
-
 const initialState={
-    numberOfBooks:10
+    numberOfBooks:10,
+    numberOfPens:20
 }
 
 function buyBook(){
     return {
-        type:Buy_Book,
-        info:"My First edux Code"
+        type:"Buy_Book",
+        payload:"My First Redux Code"
+    }
+}
+
+function buyPen(){
+    return {
+        type:"Buy_Pen",
+        payload:"My Second Redux Code"
     }
 }
 
@@ -22,6 +28,10 @@ const Reducer = (state=initialState,action) =>{
             numberOfBooks:state.numberOfBooks-1
         }
         
+        case "Buy_Pen":return{
+            ...state,
+            numberOfPens:state.numberOfPens-2
+        }
         default: return state;
     }
     
@@ -33,5 +43,7 @@ const unsubscribe=store.subscribe(()=>{console.log('Updated State Value', store.
 store.dispatch(buyBook());
 store.dispatch(buyBook());
 store.dispatch(buyBook());
-store.dispatch(buyBook());
+store.dispatch(buyPen());
+store.dispatch(buyPen());
+store.dispatch(buyPen());
 unsubscribe();
