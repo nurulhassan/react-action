@@ -1,4 +1,5 @@
-const {redux, applyMiddleware, createStore, combineReducers} = require('redux');
+const {redux, applyMiddleware, createStore} = require('redux');
+const {combineReducers} = require('redux');
 
 const initialStateBooks={
     numberOfBooks:10
@@ -8,13 +9,13 @@ const initialStatePens={
         numberOfPens:20
 }
 
-
 function buyBook(){
     return {
         type:"Buy_Book",
         payload:"My First Redux Code"
     }
 }
+
 function buyPen(){
     return {
         type:"Buy_Pen",
@@ -73,4 +74,4 @@ store.dispatch(buyBook());
 store.dispatch(buyPen());
 store.dispatch(buyPen());
 store.dispatch(buyPen());
-unsubscribe(); 
+unsubscribe();
